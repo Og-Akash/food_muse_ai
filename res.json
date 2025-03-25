@@ -1,0 +1,103 @@
+[
+  {
+    "recipeName": "Hyderabadi Dum Biryani",
+    "description": "Aromatic and flavorful rice layered with tender meat, potatoes, and a blend of exotic spices. Cooked on dum (slow steam) for an unforgettable taste.",
+    "ingredients": [
+      {
+        "ingredient": "Basmati Rice",
+        "icon": "🍚",
+        "quantity": "2 cups"
+      },
+      {
+        "ingredient": "Meat (Lamb or Chicken)",
+        "icon": "🍖",
+        "quantity": "1 kg"
+      },
+      {
+        "ingredient": "Potatoes",
+        "icon": "🥔",
+        "quantity": "2 medium, peeled and cubed"
+      },
+      {
+        "ingredient": "Onions",
+        "icon": "🧅",
+        "quantity": "3 large, thinly sliced"
+      },
+      {
+        "ingredient": "Tomatoes",
+        "icon": "🍅",
+        "quantity": "2 medium, chopped"
+      },
+      {
+        "ingredient": "Ginger-Garlic Paste",
+        "icon": "🧄",
+        "quantity": "2 tablespoons"
+      },
+      {
+        "ingredient": "Green Chilies",
+        "icon": "🌶️",
+        "quantity": "4-6, slit"
+      },
+      {
+        "ingredient": "Plain Yogurt",
+        "icon": "🥛",
+        "quantity": "1 cup"
+      },
+      {
+        "ingredient": "Biryani Masala",
+        "icon": "🌿",
+        "quantity": "3 tablespoons"
+      },
+      {
+        "ingredient": "Turmeric Powder",
+        "icon": "🟡",
+        "quantity": "1 teaspoon"
+      },
+      {
+        "ingredient": "Red Chili Powder",
+        "icon": "🟥",
+        "quantity": "1-2 teaspoons (or to taste)"
+      },
+      {
+        "ingredient": "Cilantro",
+        "icon": "🌿",
+        "quantity": "1/2 cup, chopped"
+      },
+      {
+        "ingredient": "Mint Leaves",
+        "icon": "🌿",
+        "quantity": "1/4 cup, chopped"
+      },
+      {
+        "ingredient": "Saffron Strands",
+        "icon": "🌼",
+        "quantity": "a pinch, soaked in 1/4 cup warm milk"
+      },
+       {
+        "ingredient": "Ghee or Oil",
+        "icon": "🫙",
+        "quantity": "1/2 cup"
+      },
+       {
+        "ingredient": "Salt",
+        "icon": "🧂",
+        "quantity": "To taste"
+      }
+    ],
+    "steps": [
+      "Wash and soak the rice for 30 minutes.",
+      "Marinate the meat with ginger-garlic paste, yogurt, turmeric powder, red chili powder, biryani masala, salt, half of the chopped cilantro, and mint leaves. Marinate for at least 2 hours or preferably overnight.",
+      "Heat ghee or oil in a large pot. Fry the sliced onions until golden brown. Remove half of the fried onions and set aside for later.",
+      "Add the marinated meat to the pot and cook until the meat is slightly browned. Add tomatoes and green chilies and cook until the tomatoes soften.",
+      "Add the cubed potatoes and cook for a few minutes.",
+      "Add the soaked rice to the pot. Gently mix without breaking the rice. Add water (about twice the amount of rice) and salt.",
+      "Bring the water to a boil, then reduce the heat to low, cover the pot tightly, and cook on dum (slow steam) for 20-25 minutes, or until the rice is cooked and the water is absorbed.",
+      "After cooking, gently fluff the rice with a fork. Sprinkle the saffron-infused milk, remaining fried onions, cilantro, and mint leaves on top.",
+      "Cover the pot again and let it rest for 10-15 minutes before serving."
+    ],
+    "calories": 650,
+    "cookTime": 90,
+    "serveTo": 6,
+    "imagePrompt": "Aromatic Hyderabadi Dum Biryani, layered with tender meat, fluffy rice, potatoes, and aromatic spices, garnished with fresh herbs, served in a traditional pot, vibrant colors, delicious and appetizing, high-angle shot, studio lighting, photorealistic"
+  }
+]
