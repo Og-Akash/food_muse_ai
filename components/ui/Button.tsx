@@ -11,8 +11,8 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 type ButtonProps = {
   onPress?: () => void;
   children: React.ReactNode;
-  iconName: any;
-  isLoading: boolean;
+  iconName?: any;
+  isLoading?: boolean;
 };
 
 export default function Button({
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: Colors.primary,
     borderRadius: 10,
-    marginTop: 20,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",

@@ -4,6 +4,7 @@ import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
 import { tokenCache } from "@/cache";
 import { useState } from "react";
 import { userContext } from "@/context/UserContext";
+import Feather from '@expo/vector-icons/Feather';
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
 
@@ -42,6 +43,20 @@ export default function RootLayout() {
               name="(tabs)"
               options={{
                 headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="category/index"
+              options={{
+               headerTransparent: true,
+               headerTitle: ""
+              }}
+            />
+            <Stack.Screen
+              name="recipe-details/index"
+              options={{
+               headerTitle: "Detail",
+               headerRight: () => <Feather name="share" size={24} color="black" />
               }}
             />
           </Stack>

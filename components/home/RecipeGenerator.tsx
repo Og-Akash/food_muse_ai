@@ -17,6 +17,7 @@ import LoadingDialog from "../LoadingDialog";
 import { saveRecipeToDb, updateUser } from "@/services/apiService";
 import { useUser } from "@clerk/clerk-expo";
 import { userContext } from "@/context/UserContext";
+import { useRouter } from "expo-router";
 
 export default function RecipeGenerator() {
   const [userInput, setUserInput] = useState("");
@@ -25,6 +26,7 @@ export default function RecipeGenerator() {
   const [isLoaderOpen, setIsLoaderOpen] = useState(false);
   const actionSheetRef = useRef<ActionSheetRef>(null);
   const { user, setUser } = useContext(userContext);
+  const router = useRouter();
 
   const generateRecipe = async () => {
     if (!userInput) {
@@ -57,7 +59,7 @@ export default function RecipeGenerator() {
       setIsLoaderOpen(true);
       const prompt = `RecipeName: ${recipeOption.recipe_name} Description: ${recipeOption.description} ${RECIPE_PROMPTS.GENERNATE_COMPLE_RECIPE_PROMPT}`;
       const res = await aiModel(prompt);
-      const content = JSON.parse(res.choices[0].message.content as any);
+      const content = JSON.parse(res?.choices[0]?.message?.content?.[0] as any);
       if (content) {
         const email = user?.email;
         const updatedUser = {
@@ -68,11 +70,17 @@ export default function RecipeGenerator() {
           username: user?.username,
         };
 
-        await saveRecipeToDb(content[0], email);
+        await saveRecipeToDb(content, email);
         const updatedUserData = await updateUser(user?.documentId, updatedUser);
         console.log("updatedUserData: ", updatedUserData);
         setUser(updatedUserData);
-        // await generateImage(content?.[0].imagePrompt)
+        router.push({
+          pathname: "/recipe-details",
+          params: {
+            recipe: JSON.stringify(content)
+          },
+        });
+        // await generateImage(content?.imagePrompt)
       }
     } catch (error) {
       console.log(error);
@@ -105,13 +113,15 @@ export default function RecipeGenerator() {
         placeholder="what you like cook today!"
         onChangeText={(value) => setUserInput(value)}
       />
-      <Button
-        onPress={() => generateRecipe()}
-        isLoading={isGenerating}
-        iconName="cookie-clock"
-      >
-        Generate Recipe
-      </Button>
+      <View style={{ marginTop: 20, width: "100%" }}>
+        <Button
+          onPress={() => generateRecipe()}
+          isLoading={isGenerating}
+          iconName="cookie-clock"
+        >
+          Generate Recipe
+        </Button>
+      </View>
 
       <LoadingDialog visible={isLoaderOpen} text="Generating..." />
 

@@ -1,9 +1,9 @@
 import { StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import Colors from "@/services/Colors";
-import IntroHeader from "@/container/home/IntroHeader";
-import RecipeGenerator from "@/container/home/RecipeGenerator";
-import Category from "@/container/home/Category";
+import IntroHeader from "@/components/home/IntroHeader";
+import RecipeGenerator from "@/components/home/RecipeGenerator";
+import Category from "@/components/home/Category";
 
 export default function Home() {
   return (

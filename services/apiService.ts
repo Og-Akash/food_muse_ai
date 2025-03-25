@@ -19,6 +19,8 @@ export const createNewRecipe = (data: any) =>
   apiClient.post("/recipes", {
     data: data,
   });
+export const getRecipeByCategory = (category: string) =>
+  apiClient.get("/recipes");
 
 export const updateUser = (userId: number, updatedData: any) =>
   apiClient.put("/user-lists/" + userId, {

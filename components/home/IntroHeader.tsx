@@ -43,9 +43,6 @@ export default function IntroHeader() {
         >
           Hello, {user?.fullName}
         </Text>
-        <TouchableOpacity onPress={() =>  signOut({ redirectUrl: '/Login' })}>
-          <Text>Logout</Text>
-        </TouchableOpacity>
       </View>
 
       <View
