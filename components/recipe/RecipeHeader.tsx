@@ -6,12 +6,16 @@ export default function RecipeHeader({ recipeData }: any) {
   return (
     <View>
       <Image
-        source={{
-          uri: recipeData?.imageUrl.replace(
-            "ai-guru-lab-images/",
-            "ai-guru-lab-images%2f"
-          ),
-        }}
+        source={
+          recipeData?.imageUrl
+            ? {
+                uri: recipeData?.imageUrl.replace(
+                  "ai-guru-lab-images/",
+                  "ai-guru-lab-images%2f"
+                ),
+              }
+            : require("../../assets/images/placeholder.jpeg")
+        }
         style={{
           width: "100%",
           height: 200,
@@ -29,9 +33,7 @@ export default function RecipeHeader({ recipeData }: any) {
       >
         {recipeData?.recipeName}
       </Text>
-      <Text
-        style={{ fontSize: 18, fontFamily: "OutfitBold", marginTop: 15 }}
-      >
+      <Text style={{ fontSize: 18, fontFamily: "OutfitBold", marginTop: 15 }}>
         Description
       </Text>
       <Text style={{ fontSize: 14, fontFamily: "outfit", color: Colors.gray }}>

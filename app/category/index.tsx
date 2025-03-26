@@ -20,7 +20,7 @@ export default function index() {
     try {
       setIsLoading(true);
       const result = await getRecipeByCategory(categoryName as string);
-      console.log(result.data.data);
+      // console.log(result.data.data);
       setRecipeList(result.data.data);
     } catch (error: any) {
       console.log(error?.message);
@@ -62,22 +62,14 @@ export default function index() {
         data={recipeList}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
-          <TouchableOpacity
+          <View
             style={{
               flex: 1,
             }}
             key={index}
-            onPress={() =>
-              router.push({
-                pathname: "/recipe-details",
-                params: {
-                  recipe: JSON.stringify(item),
-                },
-              })
-            }
           >
             <RecipeCard recipe={item} />
-          </TouchableOpacity>
+          </View>
         )}
       />
     </View>

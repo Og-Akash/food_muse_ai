@@ -20,7 +20,9 @@ export const createNewRecipe = (data: any) =>
     data: data,
   });
 export const getRecipeByCategory = (category: string) =>
-  apiClient.get("/recipes");
+  apiClient.get("/recipes?filters[category][$containsi]=" + category);
+
+export const getAllRecipeList = () => apiClient.get("/recipes?sort[0]=id:desc")
 
 export const updateUser = (userId: number, updatedData: any) =>
   apiClient.put("/user-lists/" + userId, {

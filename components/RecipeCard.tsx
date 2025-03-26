@@ -1,19 +1,39 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "@/services/Colors";
+import { useRouter } from "expo-router";
 
 export default function RecipeCard({ recipe }: any) {
+  const router = useRouter();
   return (
-    <View
+    <TouchableOpacity
+      onPress={() =>
+        router.push({
+          pathname: "/recipe-details",
+          params: {
+            recipe: JSON.stringify(recipe),
+          },
+        })
+      }
       style={{
         margin: 5,
       }}
     >
       <Image
-        source={{ uri: recipe.imageUrl }}
+        source={
+          recipe?.imageUrl
+            ? {
+                uri: recipe?.imageUrl.replace(
+                  "ai-guru-lab-images/",
+                  "ai-guru-lab-images%2f"
+                ),
+              }
+            : require("../assets/images/placeholder.jpeg")
+        }
         style={{
           borderRadius: 20,
+          objectFit: "cover",
           width: "100%",
           height: 200,
         }}
@@ -46,6 +66,6 @@ export default function RecipeCard({ recipe }: any) {
           </Text>
         </View>
       </LinearGradient>
-    </View>
+    </TouchableOpacity>
   );
 }

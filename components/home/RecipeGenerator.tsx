@@ -38,7 +38,7 @@ export default function RecipeGenerator() {
       const res = await aiModel(
         userInput + RECIPE_PROMPTS.GENERATE_RECIPE_OPTION_PROMPT
       );
-      console.log(res.choices[0].message.content);
+      // console.log(res.choices[0].message.content);
       const content = res.choices[0].message;
       if (content) {
         setRecipeOptions(JSON.parse(res?.choices[0]?.message?.content as any));
@@ -46,7 +46,7 @@ export default function RecipeGenerator() {
         setUserInput("");
       }
     } catch (error) {
-      console.log("failed to generate", error);
+      // console.log("failed to generate", error);
     } finally {
       setUserInput("");
       setIsGenerating(false);
@@ -59,7 +59,9 @@ export default function RecipeGenerator() {
       setIsLoaderOpen(true);
       const prompt = `RecipeName: ${recipeOption.recipe_name} Description: ${recipeOption.description} ${RECIPE_PROMPTS.GENERNATE_COMPLE_RECIPE_PROMPT}`;
       const res = await aiModel(prompt);
-      const content = JSON.parse(res?.choices[0]?.message?.content?.[0] as any);
+      const content = JSON.parse(res?.choices[0]?.message?.content as any);
+      // console.log("ai full recipe content: " + content);
+      
       if (content) {
         const email = user?.email;
         const updatedUser = {
@@ -70,14 +72,14 @@ export default function RecipeGenerator() {
           username: user?.username,
         };
 
-        await saveRecipeToDb(content, email);
+        await saveRecipeToDb(content[0], email);
         const updatedUserData = await updateUser(user?.documentId, updatedUser);
-        console.log("updatedUserData: ", updatedUserData);
+        // console.log("updatedUserData: ", updatedUserData);
         setUser(updatedUserData);
         router.push({
           pathname: "/recipe-details",
           params: {
-            recipe: JSON.stringify(content)
+            recipe: JSON.stringify(content[0])
           },
         });
         // await generateImage(content?.imagePrompt)

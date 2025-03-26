@@ -28,7 +28,7 @@ export default function RootLayout() {
         <userContext.Provider value={{ user, setUser }}>
           <Stack>
             <Stack.Screen
-              name="Landing"
+              name="index"
               options={{
                 headerShown: false,
               }}
