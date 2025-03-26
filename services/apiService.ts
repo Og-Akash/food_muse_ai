@@ -27,7 +27,21 @@ export const getAllRecipesByLimit = (limit: number) =>
   apiClient.get(
     "/recipes?sort[0]=id:desc&pagination[start]=0&pagination[limit]=" + limit
   );
+export const getUserRecipes = (email: string) =>
+  apiClient.get(
+    "/recipes?filters[createdUser][$eq]=" + email + "&sort[0]=id:desc"
+  );
+export const saveRecipe = (data: any) =>
+  apiClient.post("/user-favorites", { data: data });
 
+export const removeFromSavedRecipe = (data: any) =>
+  apiClient.delete("/user-favorites/" + data?.recipeDocId);
+
+export const userSavedRecipe = (email: string) =>
+  apiClient.get("/user-favorites?filters[email][$eq]=" + email);
+
+export const getSavedRecipesByQuery = (query: any) =>
+  apiClient.get("/recipes?" + query);
 export const updateUser = (userId: number, updatedData: any) =>
   apiClient.put("/user-lists/" + userId, {
     data: updatedData,

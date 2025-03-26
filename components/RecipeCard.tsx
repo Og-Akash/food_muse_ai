@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Colors from "@/services/Colors";
 import { useRouter } from "expo-router";
 
-export default function RecipeCard({ recipe }: any) {
+export default function RecipeCard({ recipe,savedList }: any) {
   const router = useRouter();
   return (
     <TouchableOpacity
@@ -13,6 +13,7 @@ export default function RecipeCard({ recipe }: any) {
           pathname: "/recipe-details",
           params: {
             recipe: JSON.stringify(recipe),
+            savedList,
           },
         })
       }

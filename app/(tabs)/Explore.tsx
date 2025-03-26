@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Colors from "@/services/Colors";
 import { getAllRecipeList } from "@/services/apiService";
 import RecipeCard from "@/components/RecipeCard";
+import LoadingDialog from "@/components/LoadingDialog";
 
 export default function Explore() {
   const [recipeList, setRecipeList] = useState([]);
@@ -28,10 +29,10 @@ export default function Explore() {
     <View style={styles.container}>
       <Text style={styles.headerText}>Explore All the Recipes</Text>
 
+    {loading && <LoadingDialog visible={loading}/>}
+
       <FlatList
         numColumns={2}
-        refreshing={loading}
-        onRefresh={getAllRecipe}
         showsVerticalScrollIndicator={false}
         data={recipeList}
         renderItem={({ item, index }) => (

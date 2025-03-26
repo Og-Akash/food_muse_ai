@@ -1,5 +1,5 @@
 import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { createContext } from "react";
 import Colors from "@/services/Colors";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import RecipeHeader from "@/components/recipe/RecipeHeader";
@@ -8,9 +8,11 @@ import Ingredients from "@/components/recipe/Ingredients";
 import Steps from "@/components/recipe/Steps";
 import Button from "@/components/ui/Button";
 
+export const SavedContext = createContext<any | null>(null);
 export default function index() {
-  const { recipe } = useLocalSearchParams();
+  const { recipe, savedList } = useLocalSearchParams();
   const router = useRouter();
+
 
   const recipeData = JSON.parse(recipe as string);
   console.log(recipeData);
@@ -20,35 +22,37 @@ export default function index() {
       data={[]}
       renderItem={() => null}
       ListHeaderComponent={
-        <View
-          style={{
-            padding: 10,
-            backgroundColor: Colors.white,
-            height: "100%",
-          }}
-        >
-          <RecipeHeader recipeData={recipeData} />
-          <RecipeDetails recipeData={recipeData} />
-          <Ingredients ingredients={recipeData.ingredients} />
-          <Steps steps={recipeData?.steps} />
+        <SavedContext.Provider value={{ savedList }}>
+          <View
+            style={{
+              padding: 10,
+              backgroundColor: Colors.white,
+              height: "100%",
+            }}
+          >
+            <RecipeHeader recipeData={recipeData} />
+            <RecipeDetails recipeData={recipeData} />
+            <Ingredients ingredients={recipeData.ingredients} />
+            <Steps steps={recipeData?.steps} />
 
-          <View>
-            <Text
-              style={{
-                fontSize: 18,
-                fontFamily: "outfitBold",
-                color: Colors.gray,
-                marginBottom: 10,
-              }}
-            >
-              Looking for Something else? Generate one 🤤
-            </Text>
-            <Button
-              children="Generate More"
-              onPress={() => router.push("/(tabs)/Home")}
-            />
+            <View>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontFamily: "outfitBold",
+                  color: Colors.gray,
+                  marginBottom: 10,
+                }}
+              >
+                Looking for Something else? Generate one 🤤
+              </Text>
+              <Button
+                children="Generate More"
+                onPress={() => router.push("/(tabs)/Home")}
+              />
+            </View>
           </View>
-        </View>
+        </SavedContext.Provider>
       }
     />
   );

@@ -1,13 +1,13 @@
-import { View, Text, Image, Switch, TouchableOpacity } from "react-native";
-import React, { useContext, useState } from "react";
+import { View, Text, Image } from "react-native";
+import React, { useContext } from "react";
 import { userContext } from "@/context/UserContext";
 import Colors from "@/services/Colors";
 import { useClerk, useUser } from "@clerk/clerk-expo";
 
 export default function IntroHeader() {
-  const { user } = useContext(userContext);
+  const { user } = useUser();
+  const { user: stateUser } = useContext(userContext);
   const { signOut } = useClerk();
-  const [isEnabled, setIsEnabled] = useState(false);
   return (
     <View
       style={{
@@ -26,14 +26,23 @@ export default function IntroHeader() {
         }}
       >
         <Image
-          source={{ uri: user?.profileImage }}
+          source={{ uri: user?.imageUrl }}
           style={{
             width: 40,
             height: 40,
             borderRadius: 99,
           }}
         />
-        <View
+
+        <Text style={{
+          marginLeft:10,
+          fontFamily: "outfitBold",
+          fontSize: 20,
+          color: Colors.gray, 
+        }}>{user?.fullName}</Text>
+      </View>
+
+      <View
         style={{
           marginHorizontal: 10,
           display: "flex",
@@ -42,48 +51,24 @@ export default function IntroHeader() {
           gap: 5,
           backgroundColor: Colors.lightGray,
           padding: 10,
-          borderRadius: 15
-        }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontFamily: "outfitBold",
-              color: Colors.gray,
-            }}
-          >
-            {user?.credit}
-          </Text>
-          <Image
-            source={require("../../assets/images/credit.png")}
-            style={{
-              width: 30,
-              height: 30,
-            }}
-          />
-        </View>
-      </View>
-
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: 10,
+          borderRadius: 15,
         }}
       >
         <Text
           style={{
-            fontSize: 16,
+            fontSize: 20,
             fontFamily: "outfitBold",
             color: Colors.gray,
           }}
         >
-          {isEnabled ? "Non Veg" : "Veg"}
+          {stateUser?.credit}
         </Text>
-        <Switch
-          value={isEnabled}
-          onValueChange={() => setIsEnabled(!isEnabled)}
+        <Image
+          source={require("../../assets/images/credit.png")}
+          style={{
+            width: 30,
+            height: 30,
+          }}
         />
       </View>
     </View>
