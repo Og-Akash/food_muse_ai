@@ -15,7 +15,7 @@ export default function index() {
 
 
   const recipeData = JSON.parse(recipe as string);
-  console.log(recipeData);
+  console.log("selected recipe: ",recipeData);
 
   return (
     <FlatList
@@ -32,7 +32,7 @@ export default function index() {
           >
             <RecipeHeader recipeData={recipeData} />
             <RecipeDetails recipeData={recipeData} />
-            <Ingredients ingredients={recipeData.ingredients} />
+            <Ingredients ingredients={recipeData?.ingredients} />
             <Steps steps={recipeData?.steps} />
 
             <View>

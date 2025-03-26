@@ -1,24 +1,15 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
-import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "@/services/Colors";
 
 export default function RecipeCardVertical({ recipe }: any) {
-  const router = useRouter();
+
   return (
-    <TouchableOpacity
-      onPress={() =>
-        router.push({
-          pathname: "/recipe-details",
-          params: {
-            recipe: JSON.stringify(recipe),
-          },
-        })
-      }
+    <View
       style={{
         marginTop: 10,
-        marginHorizontal:5 
+        marginHorizontal: 5,
       }}
     >
       <Image
@@ -67,6 +58,6 @@ export default function RecipeCardVertical({ recipe }: any) {
           </Text>
         </View>
       </LinearGradient>
-    </TouchableOpacity>
+    </View>
   );
 }

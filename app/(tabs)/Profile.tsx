@@ -29,6 +29,11 @@ const options = [
     path: "/(tabs)/CookBook",
   },
   {
+    icon: require("../../assets/images/credit .png"),
+    name: "Buy More Credits",
+    path: "/(tabs)/BuyCredit",
+  },
+  {
     icon: require("../../assets/images/i5.png"),
     name: "Logout",
   },

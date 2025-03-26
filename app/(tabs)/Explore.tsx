@@ -56,5 +56,6 @@ const styles = StyleSheet.create({
     fontFamily: "outfitBold",
     fontSize: 25,
     color: Colors.gray,
+    marginBottom: 10
   },
 });

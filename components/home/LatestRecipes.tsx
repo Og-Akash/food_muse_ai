@@ -1,11 +1,19 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import Colors from "@/services/Colors";
 import { getAllRecipesByLimit } from "@/services/apiService";
 import RecipeCardVertical from "../RecipeCardVertical";
+import { useRouter } from "expo-router";
 
 export default function LatestRecipes() {
   const [recipeList, setRecipeList] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     getAllRecipes();
@@ -28,9 +36,19 @@ export default function LatestRecipes() {
         data={recipeList}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
-          <View style={{ flex: 1 }}>
+          <TouchableOpacity
+            onPress={() =>
+              router.push({
+                pathname: "/recipe-details",
+                params: {
+                  recipe: JSON.stringify(item),
+                },
+              })
+            }
+            style={{ flex: 1 }}
+          >
             <RecipeCardVertical recipe={item} />
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>

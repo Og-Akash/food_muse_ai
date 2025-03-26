@@ -44,7 +44,7 @@ export default function Steps({ steps }: any) {
                 color: Colors.gray,
                 padding: 10,
                 backgroundColor: Colors.lightGray,
-                borderRadius: 10
+                borderRadius: 10,
               }}
             >{`${index + 1}. `}</Text>
             <Text
@@ -55,7 +55,7 @@ export default function Steps({ steps }: any) {
                 flex: 1,
               }}
             >
-              {item}
+              {item.instruction ? item.instruction : item}
             </Text>
           </View>
         )}

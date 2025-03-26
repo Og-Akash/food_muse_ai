@@ -15,7 +15,6 @@ import { RECIPE_PROMPTS } from "@/services/systemPrompt";
 import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import LoadingDialog from "../LoadingDialog";
 import { saveRecipeToDb, updateUser } from "@/services/apiService";
-import { useUser } from "@clerk/clerk-expo";
 import { userContext } from "@/context/UserContext";
 import { useRouter } from "expo-router";
 
@@ -29,7 +28,14 @@ export default function RecipeGenerator() {
   const router = useRouter();
 
   const generateRecipe = async () => {
-    if (!userInput) {
+    if (!userInput || user?.credit < 1) {
+      console.log(
+        !userInput
+          ? "please enter your recipe text"
+          : user?.credit < 1
+          ? "You Have No Credits Left to Gernerate a new Recipe"
+          : "failed to generate"
+      );
       Alert.alert("Please enter details properly!");
       return;
     }
@@ -61,7 +67,7 @@ export default function RecipeGenerator() {
       const res = await aiModel(prompt);
       const content = JSON.parse(res?.choices[0]?.message?.content as any);
       // console.log("ai full recipe content: " + content);
-      
+
       if (content) {
         const email = user?.email;
         const updatedUser = {
@@ -79,7 +85,7 @@ export default function RecipeGenerator() {
         router.push({
           pathname: "/recipe-details",
           params: {
-            recipe: JSON.stringify(content[0])
+            recipe: JSON.stringify(content[0]),
           },
         });
         // await generateImage(content?.imagePrompt)
