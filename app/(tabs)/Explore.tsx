@@ -16,7 +16,6 @@ export default function Explore() {
     try {
       setLoading(true);
       const result = await getAllRecipeList();
-      console.log(result.data.data);
       setRecipeList(result.data.data);
     } catch (error: any) {
       console.log(error.message);

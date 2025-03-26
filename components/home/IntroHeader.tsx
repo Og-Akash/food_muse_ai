@@ -5,8 +5,8 @@ import Colors from "@/services/Colors";
 import { useClerk, useUser } from "@clerk/clerk-expo";
 
 export default function IntroHeader() {
-  const {user} = useUser()
-  const {signOut} = useClerk()
+  const { user } = useContext(userContext);
+  const { signOut } = useClerk();
   const [isEnabled, setIsEnabled] = useState(false);
   return (
     <View
@@ -26,23 +26,42 @@ export default function IntroHeader() {
         }}
       >
         <Image
-          source={{ uri: user?.imageUrl }}
+          source={{ uri: user?.profileImage }}
           style={{
             width: 40,
             height: 40,
             borderRadius: 99,
           }}
         />
-        <Text
-          style={{
-            marginLeft: 10,
-            fontSize: 18,
-            fontFamily: "outfitBold",
-            color: Colors.gray,
-          }}
+        <View
+        style={{
+          marginHorizontal: 10,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 5,
+          backgroundColor: Colors.lightGray,
+          padding: 10,
+          borderRadius: 15
+        }}
         >
-          Hello, {user?.fullName}
-        </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              fontFamily: "outfitBold",
+              color: Colors.gray,
+            }}
+          >
+            {user?.credit}
+          </Text>
+          <Image
+            source={require("../../assets/images/credit.png")}
+            style={{
+              width: 30,
+              height: 30,
+            }}
+          />
+        </View>
       </View>
 
       <View

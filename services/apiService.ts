@@ -22,7 +22,11 @@ export const createNewRecipe = (data: any) =>
 export const getRecipeByCategory = (category: string) =>
   apiClient.get("/recipes?filters[category][$containsi]=" + category);
 
-export const getAllRecipeList = () => apiClient.get("/recipes?sort[0]=id:desc")
+export const getAllRecipeList = () => apiClient.get("/recipes?sort[0]=id:desc");
+export const getAllRecipesByLimit = (limit: number) =>
+  apiClient.get(
+    "/recipes?sort[0]=id:desc&pagination[start]=0&pagination[limit]=" + limit
+  );
 
 export const updateUser = (userId: number, updatedData: any) =>
   apiClient.put("/user-lists/" + userId, {

@@ -1,20 +1,29 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, FlatList } from "react-native";
 import React from "react";
 import Colors from "@/services/Colors";
 import IntroHeader from "@/components/home/IntroHeader";
 import RecipeGenerator from "@/components/home/RecipeGenerator";
 import Category from "@/components/home/Category";
+import LatestRecipes from "@/components/home/LatestRecipes";
 
 export default function Home() {
   return (
-    <ScrollView style={styles.container}>
-      {/* User Info */}
-      <IntroHeader />
-      {/* Recipe Generator Box */}
-      <RecipeGenerator />
-      {/* Category */}
-      <Category />
-    </ScrollView>
+    <FlatList
+      data={[]}
+      renderItem={() => null}
+      ListHeaderComponent={
+        <ScrollView style={styles.container}>
+          {/* User Info */}
+          <IntroHeader />
+          {/* Recipe Generator Box */}
+          <RecipeGenerator />
+          {/* Category */}
+          <Category />
+          {/* Latest Recipes Slider */}
+          <LatestRecipes />
+        </ScrollView>
+      }
+    />
   );
 }
 
