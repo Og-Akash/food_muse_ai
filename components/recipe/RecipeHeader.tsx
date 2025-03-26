@@ -10,7 +10,7 @@ export default function RecipeHeader({ recipeData }: any) {
   const { user } = useUser();
   const { savedList } = useContext(SavedContext);
   const [saved, setSaved] = useState(
-    savedList.includes(recipeData?.documentId)
+    savedList?.includes(recipeData?.documentId)
   );
   const toogleSavedRecipe = async (recipe: any) => {
     const data = {
